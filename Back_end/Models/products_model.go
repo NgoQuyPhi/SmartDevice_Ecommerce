@@ -25,3 +25,8 @@ type ShowReviews struct {
 	Rating     int    `json:"rating"`
 	ReviewText string `json:"review_text"`
 }
+type Category struct {
+	CategoryID       int    `json:"category_id"`
+	CategoryName     string `json:"category_name"`
+	ParentCategoryID int    `json:"parent_category_id"`
+}

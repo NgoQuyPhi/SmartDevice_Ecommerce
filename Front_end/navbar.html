@@ -1,6 +1,51 @@
+<style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    li {
+      display: inline;
+    }
+    .hover-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hover-trigger {
+            padding: 10px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .hover-list {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            list-style-type: none;
+            margin: 0;
+        }
+
+        .hover-container:hover .hover-list {
+            display: block;
+        }
+    </style>
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/cart">Cart</a></li>
+        <li><div class="hover-container">
+            <div class="hover-trigger">Category</div>
+            <ul class="hover-list">
+                {{ range .category }}
+                <li><a href="/ctgr/{{.CategoryID}}">{{ .CategoryName }}</a></li>
+                {{ end }}
+            </ul>
+        </div></li>
     </ul>
 </nav>

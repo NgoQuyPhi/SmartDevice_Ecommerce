@@ -4,12 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce Website</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+
 
 </head>
 <body>
         <header>
-            {{template "navbar.html"}}
+            <style>
+                ul {
+                  list-style-type: none;
+                  margin: 0;
+                  padding: 0;
+                }
+                
+                li {
+                  display: inline;
+                }
+                .hover-container {
+                        position: relative;
+                        display: inline-block;
+                    }
+            
+                    .hover-trigger {
+                        padding: 10px;
+                        background-color: #f0f0f0;
+                        cursor: pointer;
+                    }
+            
+                    .hover-list {
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        background-color: #fff;
+                        border: 1px solid #ccc;
+                        padding: 10px;
+                        list-style-type: none;
+                        margin: 0;
+                    }
+            
+                    .hover-container:hover .hover-list {
+                        display: block;
+                    }
+                </style>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/cart">Cart</a></li>
+                    <li><div class="hover-container">
+                        <div class="hover-trigger">Category</div>
+                        <ul class="hover-list">
+                            {{ range .category }}
+                            <li><a href="/ctgr/{{.CategoryID}}">{{ .CategoryName }}</a></li>
+                            {{ end }}
+                        </ul>
+                    </div></li>
+                </ul>
+            </nav>
         </header>
     
         <main>
@@ -19,7 +69,7 @@
             <h1>Products</h1>
             <ul>
                 {{ range .products }}
-                <li>
+                
                     <h2>{{ .Name }}</h2>
                     <p>Price: ${{ .Price }}</p>
                     <img src="ProductsIMG/{{.CoverIMG}}" alt="{{.Name}} Cover">
@@ -39,7 +89,6 @@
             &copy; E-commerce Website
         </footer>
     
-        <script src="/static/js/main.js"></script>
 
     
 </body>

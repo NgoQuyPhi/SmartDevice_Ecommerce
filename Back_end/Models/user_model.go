@@ -1,19 +1,24 @@
 package models
 
 import (
+	"errors"
+
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
+type LoginData struct {
+	Username string `json:"username" gorm:"unique"`
+	Pass     string `json:"password"`
+}
 type User struct {
 	gorm.Model
-	UserId   int    `json:"user_id"`
-	Name     string `json:"name"`
-	Username string `json:"username" gorm:"unique"`
-	Email    string `json:"email" gorm:"unique"`
-	Password string `json:"password"`
-	Phone    string `json:"phone"`
-	Role     string `json:"role"`
+	UserId int    `json:"user_id"`
+	Name   string `json:"name"`
+	LoginData
+	Email string `json:"email" gorm:"unique"`
+	Phone string `json:"phone"`
+	Role  string `json:"role"`
 }
 
 func (user *User) HashPassword(password string) error {
@@ -21,13 +26,13 @@ func (user *User) HashPassword(password string) error {
 	if err != nil {
 		return err
 	}
-	user.Password = string(bytes)
+	user.Pass = string(bytes)
 	return nil
 }
-func (user *User) CheckPassword(providedPassword string) bool {
-	if user.Password == providedPassword {
-		return true
+func (user *User) CheckPassword(providedPassword string) (bool, error) {
+	if user.Pass == providedPassword {
+		return true, nil
 	} else {
-		return false
+		return false, errors.New("wrong password")
 	}
 }
