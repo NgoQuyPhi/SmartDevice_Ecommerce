@@ -1,16 +1,59 @@
 
 <head>
-  <meta http-equiv="content-type" content="application/json">
   <title>Login</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+    form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
 </head>
 <body>
-  <h1>Login</h1>
-  <form action="/login" method="POST">
+  
+  <form action="/login" method="post">
+    <h1>Login</h1>
     <label for="username">Username:</label>
-    <input type="" id="taikhoan" name="taikhoan" required="">
+    <input type="" id="taikhoan" name="taikhoan" required>
     <br>
     <label for="pass">Password:</label>
-    <input type="password" id="matkhau" name="matkhau" required="">
+    <input type="password" id="matkhau" name="matkhau" required>
     <br>
     <button type="submit">Login</button>
+    <p>Don't have an account?</p><a href="/signup">Sign up</a>
   </form>

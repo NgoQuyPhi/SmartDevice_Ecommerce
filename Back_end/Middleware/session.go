@@ -31,8 +31,8 @@ func LoginHandle(c *gin.Context) {
 	err = database.Instance.
 		Table("users").
 		Select("user_id,username,password,name,role").
-		Scan(&userdata).
 		Where("username = ?", LoginData.Username).
+		Scan(&userdata).
 		Error
 
 	if err != nil {
@@ -46,7 +46,7 @@ func LoginHandle(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(401, "notice.html", gin.H{
-			"notice": userdata.Password,
+			"notice": err,
 		})
 		return
 	}

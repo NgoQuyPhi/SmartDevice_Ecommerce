@@ -24,5 +24,7 @@ func InitRouter() *gin.Engine {
 	router.POST("/login", middleware.LoginHandle)
 	router.GET("/logout", handlers.Logout)
 	router.GET("/ctgr/:ctgrid", handlers.ShowProductOrderbyCategory)
+	router.GET("/signup", handlers.ShowSignupPage)
+	router.POST("/signup", handlers.SignUp)
 	return router
 }
