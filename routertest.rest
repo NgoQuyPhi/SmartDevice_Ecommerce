@@ -4,7 +4,7 @@
 POST  http://{{host}}/login HTTP/1.1
 content-type: application/json
 
-   { "password": "1234567",
+   { "pass": "1234567",
 
     "username":"ngoquyphi"}
 ###

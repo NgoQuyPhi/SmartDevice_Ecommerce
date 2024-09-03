@@ -22,6 +22,7 @@ func InitRouter() *gin.Engine {
 	router.POST("/cart/remove/:id", handlers.RemoveFromCart)
 	router.GET("/login", handlers.ShowLoginPage)
 	router.POST("/login", middleware.LoginHandle)
+	router.GET("/logout", handlers.Logout)
 	router.GET("/ctgr/:ctgrid", handlers.ShowProductOrderbyCategory)
 	return router
 }

@@ -12,6 +12,7 @@ import (
 func ShowDashboard(c *gin.Context) {
 
 	session := sessions.Default(c)
+	IsAuthenticated := session.Get("isauthenticated")
 
 	name := session.Get("name")
 	role := session.Get("role")
@@ -65,15 +66,16 @@ func ShowDashboard(c *gin.Context) {
 		data[i].CoverIMG = coverPhotopath[i]
 	}
 	c.HTML(200, "dashboard.html", gin.H{
-		"products": data,
-		"category": category,
-		"name":     name,
-		"role":     role,
+		"products":        data,
+		"category":        category,
+		"name":            name,
+		"role":            role,
+		"isauthenticated": IsAuthenticated,
 	})
 }
 func ShowProductOrderbyCategory(c *gin.Context) {
 	session := sessions.Default(c)
-
+	IsAuthenticated := session.Get("isauthenticated")
 	name := session.Get("name")
 	role := session.Get("role")
 	CtgrId, err := strconv.Atoi(c.Param("ctgrid"))
@@ -135,9 +137,10 @@ func ShowProductOrderbyCategory(c *gin.Context) {
 		data[i].CoverIMG = coverPhotopath[i]
 	}
 	c.HTML(200, "dashboard.html", gin.H{
-		"products": data,
-		"category": category,
-		"name":     name,
-		"role":     role,
+		"products":        data,
+		"category":        category,
+		"name":            name,
+		"role":            role,
+		"isauthenticated": IsAuthenticated,
 	})
 }

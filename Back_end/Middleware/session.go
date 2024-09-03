@@ -11,7 +11,7 @@ import (
 func LoginHandle(c *gin.Context) {
 	var LoginData models.LoginData
 
-	err := c.Bind(&LoginData)
+	err := c.ShouldBind(&LoginData)
 
 	if err != nil {
 		c.HTML(201, "notice.html", gin.H{
@@ -30,9 +30,9 @@ func LoginHandle(c *gin.Context) {
 	var userdata models.User
 	err = database.Instance.
 		Table("users").
-		Select("*").
-		Where("username = ?", LoginData.Username).
+		Select("user_id,username,password,name,role").
 		Scan(&userdata).
+		Where("username = ?", LoginData.Username).
 		Error
 
 	if err != nil {
@@ -46,7 +46,7 @@ func LoginHandle(c *gin.Context) {
 
 	if err != nil {
 		c.HTML(401, "notice.html", gin.H{
-			"notice": err,
+			"notice": userdata.Password,
 		})
 		return
 	}
@@ -55,9 +55,13 @@ func LoginHandle(c *gin.Context) {
 		session := sessions.Default(c)
 
 		session.Set("ID", userdata.UserId)
-		session.Set("name", userdata.Username)
+		session.Set("name", userdata.Name)
 		session.Set("role", userdata.Role)
+		session.Set("isauthenticated", IsAuthenticated)
+		session.Save()
 
 	}
-	c.Redirect(200, "/")
+	c.HTML(200, "notice.html", gin.H{
+		"notice": "Login Success",
+	})
 }
