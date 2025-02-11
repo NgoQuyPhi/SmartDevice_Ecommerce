@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mens Fashion store</title>
+    <link rel="stylesheet" href="/Front_end/static/styleSheet.css">
+</head>
+
+<body id="[blazerId].exercise3.html">
+    
+    {{template "logo.html"}}
+
+    {{template "menu-bar.html"}}
+
+    <main>
+        <center>
+            <h1>Hello {{.name}}</h1>
+            <h2>Welcome to our E-commerce Website</h2>
+            <p>Browse our products and enjoy shopping!</p>
+        </center>
+        <h1>Các sản phẩm {{.categoryname}}</h1>
+
+        {{range .products}}
+
+        <div class="product">
+            
+            <h2>Tên sản phẩm:{{.Name}} </h2>
+            <p>Mô tả sản phẩm: {{.Description}}</p>
+            <p>Số lượng còn trong kho:{{.Stock_quantity}}</p>
+            <p class="price">Giá: {{.Price}}</p>
+            <form action="/cart/{{.ProductID}}" method="post">
+                <button type="submit">Thêm vào giỏ hàng</button>
+            </form>
+        </div>
+        
+        {{end}}
+
+
+        
+    </main>
+</body>
+
+</html>

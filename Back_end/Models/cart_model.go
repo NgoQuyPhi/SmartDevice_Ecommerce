@@ -2,7 +2,7 @@
 package models
 
 import (
-	database "PJ/SmartDevice_Ecomerce/Back_end/Database"
+	repositories "PJ/SmartDevice_Ecomerce/Back_end/Repositories"
 	"sync"
 
 	"github.com/gin-contrib/sessions"
@@ -45,7 +45,7 @@ func (c *Cart) AddItem(productID int, quantity int) {
 		}
 	}
 	var product Product
-	err := database.Instance.
+	err := repositories.Instance.
 		Table("products").
 		Select("product_id", "name", "price", "description").
 		Where("product_id = ?", productID).

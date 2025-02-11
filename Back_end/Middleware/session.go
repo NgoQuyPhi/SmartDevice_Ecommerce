@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	database "PJ/SmartDevice_Ecomerce/Back_end/Database"
 	models "PJ/SmartDevice_Ecomerce/Back_end/Models"
+	repositories "PJ/SmartDevice_Ecomerce/Back_end/Repositories"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -28,7 +28,7 @@ func LoginHandle(c *gin.Context) {
 	}
 
 	var userdata models.User
-	err = database.Instance.
+	err = repositories.Instance.
 		Table("users").
 		Select("user_id,username,password,name,role").
 		Where("username = ?", LoginData.Username).

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mens Fashion Store</title>
+    <link rel="stylesheet" href="Front_end\static\styleSheet.css">
+</head>
+
+<body>
+    {{template "logo.html"}}
+
+    {{template "menu-bar.html"}}
+
+    <form action="/login" method="post">
+        <input type="text" name="taikhoan" id="taikhoan"><br>
+        <input type="password" name="matkhau" id="matkhau"><br>
+        <input type="submit">
+    </form>
+
+   
+</body>
+
+</html>

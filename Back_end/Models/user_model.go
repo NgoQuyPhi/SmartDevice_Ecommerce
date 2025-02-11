@@ -6,6 +6,14 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+type SignupData struct {
+	Username string `json:"username" form:"username"`
+	Password string `json:"password" form:"password"`
+	Name     string `json:"name" form:"name"`
+	Email    string `json:"email" form:"email"`
+	Phone    string `json:"phone" form:"phone"`
+}
+
 type LoginData struct {
 	Username string `form:"taikhoan" json:"taikhoan" gorm:"unique"`
 	Pass     string `form:"matkhau" json:"matkhau"`
